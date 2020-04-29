@@ -5,8 +5,8 @@ class MoodRing extends React.Component{
     // lets us share info throughout the Component
     state = {
         currentMood: {
-            mood: 'melancholy',
-            color: 'Magenta'
+            mood: 'Slovenly',
+            color: 'Rhubarb'
         },
         savedMoods: []
     } // end state
@@ -16,7 +16,7 @@ class MoodRing extends React.Component{
     } // end func
     // run when the user changes a property
     handleChangeFor = ( event, property )=>{
-        console.log( 'in handleChangeFor:', property, event.target.value );
+        // console.log( 'in handleChangeFor:', property, event.target.value );
         this.setState({
             currentMood:{
                 ...this.state.currentMood,
@@ -46,10 +46,11 @@ class MoodRing extends React.Component{
                 <h4>Current Color: { this.state.currentMood.color }</h4>
                 <button onClick={ this.saveMood }>Save</button>
                 <ul>
-                    { this.state.savedMoods.map( ( item )=> <li key={item.mood}>{ item.mood }: { item.color }</li> ) }
+                    <MoodList listOfMoods={this.state.savedMoods} />
+                    {/* { this.state.savedMoods.map( ( item )=> <li key={item.mood}>{ item.mood }: { item.color }</li> ) } */}
                     {/* this is looping through the array and displaying it. */}
                 </ul>
-                <MoodList listOfMoods={ this.state.savedMoods }/>
+                
             </div>
         ); //end return JSX
     } // end render
