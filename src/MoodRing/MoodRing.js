@@ -1,4 +1,5 @@
 import React from 'react';
+import MoodList from '../MoodList/MoodList';
 
 class MoodRing extends React.Component{
     // lets us share info throughout the Component
@@ -19,6 +20,7 @@ class MoodRing extends React.Component{
         this.setState({
             currentMood:{
                 ...this.state.currentMood,
+                // be equal to what you already are and then update the new stuff
                 [property]: event.target.value
             }
         }) // end setState
@@ -45,8 +47,9 @@ class MoodRing extends React.Component{
                 <button onClick={ this.saveMood }>Save</button>
                 <ul>
                     { this.state.savedMoods.map( ( item )=> <li key={item.mood}>{ item.mood }: { item.color }</li> ) }
+                    {/* this is looping through the array and displaying it. */}
                 </ul>
-                <p>{ JSON.stringify( this.state ) }</p>
+                <MoodList listOfMoods={ this.state.savedMoods }/>
             </div>
         ); //end return JSX
     } // end render
@@ -56,6 +59,7 @@ class MoodRing extends React.Component{
         this.setState({
             // b/c this is an array, we use spread to retain existing values
             savedMoods: [ ...this.state.savedMoods, this.state.currentMood ]
+            //this replaces a push to array.
         })
     }
 
